@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin — Lee Shi Ying Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="admin-shell">
+
+  <section id="loginSection">
+    <h1>Admin login</h1>
+    <p class="sub">Sign in with the account created in Supabase → Authentication → Users.</p>
+    <div class="admin-card">
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn">Sign in</button>
+        <div class="form-msg" id="loginMsg"></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="panelSection" style="display:none;">
+    <h1>Manage projects</h1>
+    <p class="sub">Upload photos or videos and assign them to a category. Toggle "published" to control what shows on the live site.</p>
+
+    <div class="admin-card">
+      <form id="uploadForm">
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category" required>
+            <option value="social-media">Social Media Content Design</option>
+            <option value="website">Website Design</option>
+            <option value="uiux">UI/UX</option>
+            <option value="character">Character Design</option>
+            <option value="comic">Comic Creation</option>
+            <option value="ip-merch">IP Merchandise Design</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="title">Caption (optional)</label>
+          <input type="text" id="title" placeholder="e.g. Character sheet — Spring 2026">
+        </div>
+        <div class="field">
+          <label for="file">Image or video file</label>
+          <input type="file" id="file" accept="image/*,video/*" required>
+        </div>
+        <div class="field" style="display:flex; align-items:center; gap:8px;">
+          <input type="checkbox" id="published" style="width:auto;" checked>
+          <label for="published" style="margin:0; text-transform:none; font-weight:500; font-size:13px;">Published (visible on the live site)</label>
+        </div>
+        <button type="submit" class="btn">Upload</button>
+        <div class="form-msg" id="uploadMsg"></div>
+      </form>
+    </div>
+
+    <div class="admin-card">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+        <strong style="font-size:14px;">All projects</strong>
+        <button id="logoutBtn" class="btn ghost">Sign out</button>
+      </div>
+      <div id="entryList"></div>
+    </div>
+  </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

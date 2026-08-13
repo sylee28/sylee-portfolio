@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Merchandise Design — Lee Shi Ying</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav-top" id="navTop">
+  <div class="links">
+    <span class="spark"><svg viewBox="0 0 24 24" fill="var(--ink)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
+    <a class="nav-link" href="index.html">Home</a><span class="nav-sep">|</span>
+    <a class="nav-link" href="social-media.html">Social Media Content Design</a><span class="nav-sep">|</span>
+    <a class="nav-link" href="website.html">Website Design</a><span class="nav-sep">|</span>
+    <a class="nav-link" href="uiux.html">UI/UX</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<nav class="nav-bottom" id="navBottom">
+  <a class="nav-link" href="character.html">Character Design</a><span class="nav-sep">|</span>
+  <a class="nav-link" href="comic.html">Comic Creation</a><span class="nav-sep">|</span>
+  <a class="nav-link active" href="ip-merch.html">IP Merchandise Design</a>
+  <span class="spark"><svg viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="menu-spark spark"><svg viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="social-media.html">Social Media Content Design</a>
+    <a href="website.html">Website Design</a>
+    <a href="uiux.html">UI/UX</a>
+    <a href="character.html">Character Design</a>
+    <a href="comic.html">Comic Creation</a>
+    <a class="active" href="ip-merch.html">IP Merchandise Design</a>
+  </div>
+</div>
+
+<section class="category-hero">
+  <a class="back-link reveal" href="index.html"><span>←</span> Home</a>
+  <h1 class="reveal">IP Merchandise Design</h1>
+  <p class="reveal">Fan merchandise design based on existing IPs — art cards, stickers, standees, and keychains.</p>
+</section>
+
+<section class="project-gallery" id="gallery">
+  <!-- filled at runtime from Supabase by js/projects.js -->
+  <div class="empty-state">載入中…</div>
+</section>
+
+<section class="other-categories">
+  <div class="block-label reveal">Other categories</div>
+  <div class="other-cat-list reveal">
+      <a href="social-media.html">Social Media Content Design</a>
+      <a href="website.html">Website Design</a>
+      <a href="uiux.html">UI/UX</a>
+      <a href="character.html">Character Design</a>
+      <a href="comic.html">Comic Creation</a>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/main.js"></script>
+<script>renderCategoryProjects('ip-merch', 'gallery');</script>
+</body>
+</html>
