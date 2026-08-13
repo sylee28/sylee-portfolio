@@ -42,16 +42,15 @@
   </div>
 </div>
 
-<section class="category-hero">
+<section class="category-hero spark-field" data-spark-count="3">
   <a class="back-link reveal" href="index.html"><span>←</span> Home</a>
   <h1 class="reveal">Website Design</h1>
   <p class="reveal">Website design and layout projects.</p>
 </section>
 
-<section class="project-gallery" id="gallery">
-  <!-- filled at runtime from Supabase by js/projects.js -->
+<div id="gallery">
   <div class="empty-state">載入中…</div>
-</section>
+</div>
 
 <section class="other-categories">
   <div class="block-label reveal">Other categories</div>
@@ -64,6 +63,7 @@
   </div>
 </section>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/supabase-client.js"></script>
 <script src="js/projects.js"></script>

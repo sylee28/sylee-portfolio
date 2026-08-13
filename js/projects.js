@@ -1,15 +1,20 @@
 /* ===========================================================
-   Renders published projects for one category into a gallery
-   container. Falls back to a friendly message if Supabase isn't
-   configured yet, or if this category has no published items.
+   Fetches published projects for one category and renders each
+   as its own full-viewport section — same rhythm as the homepage
+   slides, not a card grid. Falls back to a friendly empty state
+   if Supabase isn't configured yet, or this category is empty.
    =========================================================== */
 
-async function renderCategoryProjects (categorySlug, containerId) {
-  var container = document.getElementById(containerId);
-  if (!container) return;
+async function renderCategoryProjects (categorySlug, mountId) {
+  var mount = document.getElementById(mountId);
+  if (!mount) return;
+
+  function showEmpty (message) {
+    mount.innerHTML = '<div class="empty-state">' + message + '</div>';
+  }
 
   if (!window.supabaseClient) {
-    container.innerHTML = '<div class="empty-state">後台資料庫還沒設定好，暫時看不到作品。設定完成後（見 supabase/README.md）這裡會自動顯示。</div>';
+    showEmpty('後台資料庫還沒設定好，暫時看不到作品。設定完成後（見 supabase/README.md）這裡會自動顯示。');
     return;
   }
 
@@ -21,22 +26,31 @@ async function renderCategoryProjects (categorySlug, containerId) {
     .order('sort_order', { ascending: true });
 
   if (result.error) {
-    container.innerHTML = '<div class="empty-state">載入失敗，請稍後再試。</div>';
+    showEmpty('載入失敗，請稍後再試。');
     console.error(result.error);
     return;
   }
 
   var data = result.data;
   if (!data || data.length === 0) {
-    container.innerHTML = '<div class="empty-state">這個分類還沒有上傳作品——之後在後台新增並發布後，會自動顯示在這裡。</div>';
+    showEmpty('這個分類還沒有上傳作品——之後在後台新增並發布後，會自動顯示在這裡。');
     return;
   }
 
-  container.innerHTML = data.map(function (p) {
+  mount.innerHTML = '';
+  data.forEach(function (p) {
+    var section = document.createElement('section');
+    section.className = 'project-full spark-field';
+    section.setAttribute('data-spark-count', '3');
+
     var mediaTag = p.media_type === 'video'
       ? '<video src="' + p.media_url + '" muted loop autoplay playsinline></video>'
       : '<img src="' + p.media_url + '" alt="' + (p.title ? p.title.replace(/"/g, '&quot;') : '') + '">';
     var caption = p.title ? '<div class="caption">' + p.title + '</div>' : '';
-    return '<div class="project-tile"><div class="thumb">' + mediaTag + '</div>' + caption + '</div>';
-  }).join('');
+
+    section.innerHTML = '<div class="media-frame">' + mediaTag + '</div>' + caption;
+    mount.appendChild(section);
+
+    if (window.scatterSparks) window.scatterSparks(section, 3);
+  });
 }
