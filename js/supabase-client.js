@@ -5,8 +5,8 @@
    together with the Row Level Security rules in supabase/schema.sql,
    which are what actually keep writes admin-only.
    =========================================================== */
-const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://xdceymgnclxpplllbezk.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_6_mbPpw2EK4x_jZdyHTHSw_oe360xIj';
 
 window.supabaseClient = (SUPABASE_URL.indexOf('YOUR_') === 0)
   ? null
