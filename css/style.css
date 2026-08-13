@@ -14,7 +14,7 @@
   --pad-x: 6vw;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-snap-type:y mandatory;}
 body{
   font-family:'Poppins', sans-serif;
   background:var(--bg);
@@ -32,7 +32,7 @@ img{max-width:100%; display:block;}
 
 /* ---------- NAV (identical on every page; active link changes per page) ---------- */
 .nav-top, .nav-bottom{
-  position:fixed; left:0; right:0; z-index:50;
+  position:fixed; left:0; right:0; z-index:80;
   display:flex; align-items:center; gap:8px;
   padding:22px var(--pad-x);
   font-size:13px;
@@ -80,6 +80,7 @@ img{max-width:100%; display:block;}
   text-align:center;
   overflow:hidden;
   padding:120px var(--pad-x) 60px;
+  scroll-snap-align:start; scroll-snap-stop:always;
 }
 .hero-row{
   width:100%; max-width:900px;
@@ -122,10 +123,12 @@ section{ padding:120px var(--pad-x); position:relative; }
 #home.about-section{
   min-height:100vh; display:flex; align-items:center;
   padding-top:120px; padding-bottom:70px;
+  scroll-snap-align:start; scroll-snap-stop:always;
 }
 .about-grid{
-  display:grid; grid-template-columns:0.62fr 1.35fr auto;
-  gap:clamp(28px,5vw,64px); align-items:center; width:100%;
+  display:grid; grid-template-columns:0.48fr 1.35fr 0.3fr;
+  gap:clamp(24px,3.6vw,48px); align-items:center; width:100%;
+  max-width:1480px; margin:0 auto;
 }
 .about-photo{
   aspect-ratio:2/3; border-radius:22px; overflow:hidden;
@@ -133,15 +136,18 @@ section{ padding:120px var(--pad-x); position:relative; }
 }
 .about-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-.about-content h2.hello{ font-size:clamp(38px,5.2vw,62px); font-weight:800; line-height:1; margin-bottom:14px; text-align:left; }
-.about-content p.intro{ font-size:clamp(18px,2vw,23px); font-weight:700; margin-bottom:18px; text-align:left; }
+.about-content h2.hello{ font-size:clamp(42px,5.8vw,70px); font-weight:800; line-height:1; margin-bottom:14px; text-align:left; }
+.about-content p.intro{ font-size:clamp(20px,2.3vw,27px); font-weight:700; margin-bottom:18px; text-align:left; }
 .about-content p.intro b{ color:var(--purple); }
-.about-content p.lead{ font-size:15.5px; line-height:1.8; color:var(--ink-soft); max-width:48ch; margin-bottom:32px; text-align:left; }
-.block-label{ font-size:clamp(20px,2.4vw,28px); font-weight:800; text-transform:uppercase; color:var(--ink); letter-spacing:.01em; margin:0 0 18px; text-align:left; }
+.about-content p.lead{
+  font-size:16.5px; line-height:1.85; color:var(--ink-soft); max-width:50ch; margin-bottom:32px;
+  text-align:justify; text-align-last:left; hyphens:none;
+}
+.block-label{ font-size:clamp(22px,2.7vw,31px); font-weight:800; text-transform:uppercase; color:var(--ink); letter-spacing:.01em; margin:0 0 18px; text-align:left; }
 
 .edu-item{ margin-bottom:14px; }
-.edu-item h4{ font-size:12.5px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; text-align:left; }
-.edu-item p{ font-size:13px; color:var(--ink-soft); text-align:left; margin-top:3px; }
+.edu-item h4{ font-size:13.5px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; text-align:left; }
+.edu-item p{ font-size:13.5px; color:var(--ink-soft); text-align:left; margin-top:3px; }
 
 .about-skills{ display:flex; align-items:center; gap:18px; justify-self:end; }
 .skills-rail{ display:flex; flex-direction:column; gap:13px; }
@@ -155,13 +161,19 @@ section{ padding:120px var(--pad-x); position:relative; }
   -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
   -webkit-mask-position:center; mask-position:center;
 }
+.skills-rail .badge .icon-text{
+  color:#fff; font-size:13px; font-weight:700; letter-spacing:.01em;
+}
 .skills-label{
   writing-mode:vertical-rl; transform:rotate(180deg);
   font-size:13px; font-weight:700; letter-spacing:.38em; color:var(--ink);
 }
 
 /* ---------- PROJECT PREVIEW SLIDES (homepage — full-viewport per category, pure visual, no titles) ---------- */
-#social-media, #website, #uiux, #character, #comic, #ip{ padding-top:0; padding-bottom:0; }
+#social-media, #website, #uiux, #character, #comic, #ip{
+  padding-top:0; padding-bottom:0;
+  scroll-snap-align:start; scroll-snap-stop:always;
+}
 .project-slide{
   min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:38px; text-decoration:none;
