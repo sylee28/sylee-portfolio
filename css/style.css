@@ -313,12 +313,13 @@ section{ padding:120px var(--pad-x); position:relative; }
 }
 .entry-row .actions button:hover{ border-color:var(--ink); color:var(--ink); }
 
-@media (max-width:768px){
+@media (max-width:1180px){
   .nav-top .links, .nav-bottom{ display:none; }
   .burger{ display:block; }
   #home.about-section{ min-height:auto; padding-top:130px; }
-  .about-grid{ grid-template-columns:1fr; gap:32px; }
-  .about-photo{ aspect-ratio:4/3; max-width:340px; margin:0 auto; }
+  .about-grid{ grid-template-columns:1fr; gap:32px; max-width:520px; }
+  .about-photo{ aspect-ratio:3/4; max-width:360px; margin:0 auto; }
+  .about-photo img{ object-position:center 22%; }
   .about-skills{ justify-self:start; }
   .skills-rail{ flex-direction:row; flex-wrap:wrap; }
   .skills-label{ writing-mode:horizontal-tb; transform:none; }
