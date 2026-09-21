@@ -1,0 +1,793 @@
+/* ===========================================================
+   Lee Shi Ying — Portfolio
+   Shared stylesheet for every page (index + category pages + admin)
+   =========================================================== */
+
+:root{
+  --bg: #f4f4f4;
+  --ink: #303644;
+  --ink-soft: #6b6f7d;
+  --purple: #9375b5;
+  --coral: #e5958a;
+  --line: rgba(48,54,68,0.12);
+  --radius: 14px;
+  --pad-x: 6vw;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-snap-type:y mandatory;}
+body{
+  font-family:'Poppins', sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;
+  background-image: radial-gradient(circle at 1px 1px, rgba(48,54,68,0.06) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+
+.spark{ display:inline-block; width:14px; height:14px; flex-shrink:0; }
+.spark svg{ width:100%; height:100%; display:block; }
+.spark-mark{ position:absolute; pointer-events:none; }
+.spark-field{ position:relative; }
+
+/* ---------- NAV (identical on every page; active link changes per page) ---------- */
+.nav-top, .nav-bottom{
+  position:fixed; left:0; right:0; z-index:80;
+  display:flex; align-items:center; gap:8px;
+  padding:22px var(--pad-x);
+  font-size:13px;
+}
+.nav-top{ top:0; justify-content:space-between; }
+.nav-top .links{ display:flex; align-items:center; gap:8px; }
+.nav-bottom{ bottom:0; justify-content:flex-end; }
+.nav-link{ color:var(--ink); position:relative; padding:2px 0; transition:color .25s; cursor:pointer; }
+.nav-sep{ color:var(--ink-soft); margin:0 4px; opacity:.5; }
+.nav-link.active{ color:var(--purple); font-weight:600; }
+
+.burger{ display:none; width:22px; height:16px; position:relative; z-index:70; cursor:pointer; background:none; border:none; padding:0; }
+.burger span{ position:absolute; left:0; width:100%; height:2px; background:var(--ink); transition:transform .3s, opacity .3s, background .3s; }
+.burger span:nth-child(1){ top:0; }
+.burger span:nth-child(2){ top:7px; }
+.burger span:nth-child(3){ top:14px; }
+.burger.open span{ background:#fff; }
+.burger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2){ opacity:0; }
+.burger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+/* full-screen rectangular wipe, anchored from the top where the burger sits — no circle */
+.mobile-menu{
+  position:fixed; inset:0; z-index:60; pointer-events:none;
+  background:var(--ink);
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path .55s cubic-bezier(.76,0,.24,1);
+}
+.mobile-menu.open{ pointer-events:auto; clip-path:inset(0 0 0% 0); }
+.mobile-menu .links{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px;
+  opacity:0; transition:opacity .35s ease;
+}
+.mobile-menu.open .links{ opacity:1; transition-delay:.25s; }
+.mobile-menu a{ color:#fff; font-size:20px; letter-spacing:.02em; opacity:.8; }
+.mobile-menu a.active{ opacity:1; font-weight:700; color:var(--coral); }
+.mobile-menu .menu-spark{ position:absolute; top:26px; right:var(--pad-x); }
+
+/* ---------- HERO (index only) ---------- */
+.hero{
+  position:relative;
+  min-height:92vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  padding:120px var(--pad-x) 60px;
+  scroll-snap-align:start; scroll-snap-stop:always;
+}
+.hero-row{
+  width:100%; max-width:900px;
+  display:flex; align-items:baseline; justify-content:space-between;
+  position:relative; z-index:2;
+}
+.hero-row span{ font-size:15px; letter-spacing:.25em; text-transform:uppercase; color:var(--ink-soft); }
+h1.portfolio{
+  font-size:clamp(48px, 10vw, 118px);
+  font-weight:800; letter-spacing:.03em;
+  line-height:1; position:relative; z-index:2;
+  display:flex; justify-content:center; flex-wrap:wrap; margin:6px 0;
+}
+h1.portfolio .ltr{ display:inline-block; transform:translateY(40px); opacity:0; }
+.byline{ margin-top:14px; font-size:20px; position:relative; z-index:2; color:var(--ink); }
+.byline b{ color:var(--purple); font-weight:700; letter-spacing:.04em; }
+.scroll-cue{
+  margin-top:50px; font-size:11px; letter-spacing:.2em; color:var(--ink-soft);
+  display:flex; flex-direction:column; align-items:center; gap:8px; position:relative; z-index:2;
+}
+.scroll-cue .bar{ width:1px; height:30px; background:var(--line); position:relative; overflow:hidden; }
+.scroll-cue .bar::after{
+  content:''; position:absolute; top:-100%; left:0; width:100%; height:100%;
+  background:var(--purple); animation:cue 1.8s ease-in-out infinite;
+}
+@keyframes cue{ 50%{top:0%;} 100%{top:100%;} }
+
+/* ---------- SECTION SHELL ---------- */
+section{ padding:120px var(--pad-x); position:relative; }
+.section-label{
+  display:flex; align-items:center; gap:10px;
+  font-size:13px; letter-spacing:.25em; text-transform:uppercase; color:var(--ink-soft);
+  margin-bottom:16px; text-align:left;
+}
+.section-title{ font-size:clamp(32px,5vw,54px); font-weight:800; letter-spacing:.01em; margin-bottom:50px; text-align:left; }
+.reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* ---------- ABOUT / HOME (matches the fixed reference layout: photo | content | vertical skills rail) ---------- */
+#home.about-section{
+  min-height:100vh; display:flex; align-items:center;
+  padding-top:120px; padding-bottom:70px;
+  scroll-snap-align:start; scroll-snap-stop:always;
+}
+.about-grid{
+  display:grid; grid-template-columns:0.48fr 1.35fr 0.3fr;
+  gap:clamp(24px,3.6vw,48px); align-items:center; width:100%;
+  max-width:1480px; margin:0 auto;
+}
+.about-photo{
+  aspect-ratio:2/3; border-radius:22px; overflow:hidden;
+  box-shadow:0 30px 60px -28px rgba(48,54,68,.35);
+}
+.about-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.about-content h2.hello{ font-size:clamp(42px,5.8vw,70px); font-weight:800; line-height:1; margin-bottom:14px; text-align:left; }
+.about-content p.intro{ font-size:clamp(20px,2.3vw,27px); font-weight:700; margin-bottom:18px; text-align:left; }
+.about-content p.intro b{ color:var(--purple); }
+.about-content p.lead{
+  font-size:16.5px; line-height:1.85; color:var(--ink-soft); max-width:50ch; margin-bottom:32px;
+  text-align:left;
+}
+.block-label{ font-size:clamp(22px,2.7vw,31px); font-weight:800; text-transform:uppercase; color:var(--ink); letter-spacing:.01em; margin:0 0 18px; text-align:left; }
+
+.edu-item{ margin-bottom:14px; }
+.edu-item h4{ font-size:13.5px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; text-align:left; }
+.edu-item p{ font-size:13.5px; color:var(--ink-soft); text-align:left; margin-top:3px; }
+
+.about-skills{ display:flex; align-items:center; gap:18px; justify-self:end; }
+.skills-rail{ display:flex; flex-direction:column; gap:13px; }
+.skills-rail .badge{
+  width:46px; height:46px; border-radius:12px; background:var(--ink);
+  display:flex; align-items:center; justify-content:center;
+}
+.skills-rail .badge .icon{
+  width:22px; height:22px; background-color:#fff;
+  -webkit-mask-size:contain; mask-size:contain;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-position:center; mask-position:center;
+}
+.skills-rail .badge .icon-text{
+  color:#fff; font-size:13px; font-weight:700; letter-spacing:.01em;
+}
+.skills-label{
+  writing-mode:vertical-rl; transform:rotate(180deg);
+  font-size:13px; font-weight:700; letter-spacing:.38em; color:var(--ink);
+}
+
+/* ---------- PROJECT PREVIEW SLIDES (homepage — full-viewport per category, pure visual, no titles) ---------- */
+#social-media, #website, #uiux, #character, #comic, #ip{
+  padding-top:0; padding-bottom:0;
+  scroll-snap-align:start; scroll-snap-stop:always;
+}
+.project-slide{
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:38px; text-decoration:none;
+}
+.preview{
+  width:min(720px, 74vw); aspect-ratio:4/3; border-radius:22px;
+  display:flex; align-items:center; justify-content:center;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(48,54,68,0.08) 1px, transparent 0);
+  background-size:16px 16px; background-color:#fafafa;
+  border:1px solid var(--line); overflow:hidden; position:relative;
+  box-shadow:0 30px 70px -34px rgba(48,54,68,.28);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.project-slide:hover .preview{ transform:translateY(-4px); box-shadow:0 40px 90px -34px rgba(48,54,68,.36); }
+.preview svg{ width:32%; height:32%; }
+.cta{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink);
+  padding:13px 28px; border:1px solid var(--line); border-radius:999px;
+  transition:background .25s, color .25s, border-color .25s;
+}
+.project-slide:hover .cta, .cta:hover{ background:var(--ink); color:#fff; border-color:var(--ink); }
+.cta i{ font-style:normal; display:inline-block; transition:transform .2s; }
+.project-slide:hover .cta i, .cta:hover i{ transform:translateX(4px); }
+
+.ig-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:5px; width:52%; aspect-ratio:1; }
+.ig-grid span{ background:var(--line); border-radius:4px; }
+.ig-grid img{ width:100%; height:100%; object-fit:cover; border-radius:4px; display:block; }
+.preview-social{ padding:34px; box-sizing:border-box; }
+.preview-social .ig-grid{
+  height:100%; width:auto; aspect-ratio:1;
+  box-shadow:0 20px 44px -26px rgba(48,54,68,.35); border-radius:8px;
+  overflow:hidden; gap:6px; grid-template-rows:repeat(2,1fr);
+}
+.preview-social .ig-grid .ig-post{
+  max-width:none; width:100%; height:100%; display:flex; flex-direction:column;
+  border-radius:4px; box-shadow:none; overflow:hidden; transform:none;
+}
+.preview-social .ig-grid .ig-post .head{ padding:5px 7px; gap:5px; flex-shrink:0; }
+.preview-social .ig-grid .ig-post .head .dot{ width:11px; height:11px; }
+.preview-social .ig-grid .ig-post .head .lines{ gap:3px; }
+.preview-social .ig-grid .ig-post .head .lines span{ height:3px; border-radius:2px; }
+.preview-social .ig-grid .ig-post .body{ flex:1; min-height:0; }
+.preview-social .ig-grid .ig-post .body img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
+.project-slide:hover .preview-social .ig-grid .ig-post .body img{ transform:scale(1.05); }
+
+.browser-chrome{ position:absolute; top:0; left:0; right:0; display:flex; gap:6px; padding:14px 18px; }
+.browser-chrome span{ width:8px; height:8px; border-radius:50%; background:var(--line); }
+.preview-browser{ position:relative; }
+.browser-body{ width:72%; height:50%; margin-top:20px; background:var(--line); border-radius:8px; opacity:.5; }
+
+.comic-grid{ display:grid; grid-template-columns:1.3fr 1fr; grid-template-rows:1fr 1fr; gap:6px; width:54%; aspect-ratio:1; }
+.comic-grid span{ background:var(--line); border-radius:4px; }
+.comic-grid span:first-child{ grid-row:1 / 3; }
+
+/* ---------- CATEGORY DETAIL PAGES ---------- */
+
+/* Browser-window mockup — real screenshots framed like a browser tab,
+   cropped to the top of the page so it reads as a live preview. */
+.browser-mock{
+  border-radius:16px; overflow:hidden; background:#fff;
+  border:1px solid var(--line);
+  box-shadow:0 30px 70px -34px rgba(48,54,68,.3);
+}
+.browser-mock .chrome{
+  display:flex; align-items:center; gap:12px;
+  padding:11px 16px; background:#ececec; border-bottom:1px solid var(--line);
+}
+.browser-mock .dots{ display:flex; gap:6px; flex-shrink:0; }
+.browser-mock .dots span{ width:9px; height:9px; border-radius:50%; background:#d4d4d4; }
+.browser-mock .url{
+  flex:1; background:#fff; border-radius:7px; padding:5px 13px;
+  font-size:11.5px; color:var(--ink-soft); border:1px solid var(--line);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.browser-mock .shot{ width:100%; overflow:hidden; background:#fafafa; }
+.browser-mock .shot img{ width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+
+.browser-mock.large .shot{ aspect-ratio:16/10; }
+.browser-mock.small .shot{ aspect-ratio:4/3; }
+
+/* ---- Category page: one full-screen preview PER PROJECT (not per screenshot/card) ---- */
+.cat-project-slide{
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:30px; padding:110px var(--pad-x); text-decoration:none;
+  scroll-snap-align:start;
+}
+.cat-project-slide .frame{
+  width:100%; max-width:900px; border-radius:20px; overflow:hidden;
+  border:1px solid var(--line); box-shadow:0 30px 70px -34px rgba(48,54,68,.28);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.cat-project-slide:hover .frame{ transform:translateY(-4px); box-shadow:0 40px 90px -34px rgba(48,54,68,.36); }
+.cat-project-slide .frame img{ width:100%; display:block; }
+.cat-project-slide .cta{ display:inline-flex; align-items:center; gap:8px; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+
+/* Cover collage for the UI/UX hub card — three tilted phone mockups on the
+   Shopee brand gradient, instead of a single flat screenshot. */
+.uiux-cover{
+  display:flex; align-items:center; justify-content:center; gap:0;
+  padding:70px 50px; background:linear-gradient(135deg,#FF7A3D,#EE4D2D);
+}
+.uiux-cover .phone-mock{ width:190px; }
+
+/* ---- Project detail page: editorial case-study layout, plain smooth scroll (no snap) ---- */
+
+/* Hero: text on one side, visual bleeding on the other — not centered */
+.pd-hero-split{
+  padding:110px var(--pad-x) 80px;
+  display:grid; grid-template-columns:1fr 0.9fr; gap:60px; align-items:center;
+}
+.pd-hero-split .back-link{ display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--ink-soft); margin-bottom:30px; transition:color .2s; }
+.pd-hero-split .back-link:hover{ color:var(--purple); }
+.pd-hero-split .kicker{ font-size:12.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--purple); font-weight:700; margin-bottom:14px; }
+.pd-hero-split h1{ font-size:clamp(32px,4.6vw,52px); font-weight:800; margin-bottom:16px; }
+.pd-hero-split p.role{ font-size:14px; color:var(--ink-soft); margin-bottom:20px; }
+.pd-hero-split p.desc{ font-size:15.5px; line-height:1.85; color:var(--ink-soft); max-width:52ch; text-align:left; }
+.pd-hero-split .visual{
+  border-radius:20px; overflow:hidden; border:1px solid var(--line);
+  box-shadow:0 30px 70px -32px rgba(48,54,68,.3);
+}
+.pd-hero-split .visual img{ width:100%; display:block; }
+
+.pd-palette{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+.pd-palette .swatch{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+.pd-palette .chip{ width:48px; height:48px; border-radius:11px; border:1px solid var(--line); }
+.pd-palette .hex{ font-size:10.5px; color:var(--ink-soft); letter-spacing:.03em; }
+
+/* Three-column research/process blocks, left-aligned like the reference layout */
+.pd-columns{
+  padding:20px var(--pad-x) 90px;
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:40px;
+  max-width:1200px; margin:0 auto;
+}
+.pd-columns .col h4{ font-size:12.5px; letter-spacing:.15em; text-transform:uppercase; color:var(--ink); font-weight:700; margin-bottom:10px; }
+.pd-columns .col p{ font-size:14.5px; line-height:1.75; color:var(--ink-soft); text-align:left; }
+.pd-section-heading{
+  padding:0 var(--pad-x); max-width:1200px; margin:0 auto 30px;
+  font-size:12.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft);
+}
+
+/* Quick research-stat row */
+.stat-row{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:24px;
+  max-width:1200px; margin:0 auto; padding:0 var(--pad-x) 90px;
+}
+.stat-card{
+  background:#fff; border:1px solid var(--line); border-radius:16px; padding:28px 24px;
+  box-shadow:0 20px 44px -30px rgba(48,54,68,.22);
+}
+.stat-card .num{ font-size:40px; font-weight:800; color:var(--coral); line-height:1; margin-bottom:12px; }
+.stat-card .num span{ font-size:22px; }
+.stat-card p{ font-size:13.5px; line-height:1.6; color:var(--ink-soft); text-align:left; }
+
+/* 6-pillar feature grid */
+.feature-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:20px;
+  max-width:1200px; margin:0 auto; padding:0 var(--pad-x) 90px;
+}
+.feature-card{
+  background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px 20px;
+  box-shadow:0 18px 40px -28px rgba(48,54,68,.2);
+}
+.feature-card .n{ font-size:12px; font-weight:800; color:var(--purple); letter-spacing:.08em; }
+.feature-card h5{ font-size:15px; font-weight:700; margin:8px 0 6px; color:var(--ink); }
+.feature-card p{ font-size:13px; line-height:1.6; color:var(--ink-soft); text-align:left; }
+
+/* Small text-only research/benchmark row */
+/* Alternating image/text rows — the page-by-page walkthrough, not a centered stack */
+.pd-row{
+  padding:70px var(--pad-x); display:grid; grid-template-columns:1.1fr 0.8fr; gap:56px; align-items:center;
+  max-width:1200px; margin:0 auto;
+}
+.pd-row.reverse{ grid-template-columns:0.8fr 1.1fr; }
+.pd-row.reverse .pd-row-visual{ order:1; }
+.pd-row.reverse .pd-row-text{ order:2; }
+.pd-row-text .step{ font-size:12px; letter-spacing:.15em; color:var(--purple); font-weight:700; margin-bottom:10px; text-transform:uppercase; }
+.pd-row-text h3{ font-size:24px; font-weight:800; margin-bottom:12px; }
+
+/* Numbered flow path — a circular number badge in place of the plain
+   "STEP 0X" label. */
+.flow-wrap{ position:relative; }
+.flow-wrap .pd-row{ position:relative; z-index:1; }
+.flow-title{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+.flow-title h3{ margin-bottom:0; }
+.step-num{
+  width:34px; height:34px; border-radius:50%; background:var(--coral); color:#fff;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  font-size:15px; font-weight:800; box-shadow:0 12px 22px -8px rgba(238,77,45,.55);
+}
+
+/* Small pointer callouts layered beside a flow screenshot — positioned
+   relative to the phone itself so they never sit on top of the UI. */
+.phone-frame-wrap{ position:relative; flex-shrink:0; }
+.callout{
+  position:absolute; display:flex; align-items:center; gap:7px;
+  font-size:11.5px; color:var(--ink-soft); white-space:nowrap; pointer-events:none;
+}
+.callout .line{ width:22px; height:1px; background:var(--coral); display:inline-block; flex-shrink:0; }
+.callout.out-right{ left:100%; margin-left:14px; }
+.callout.out-left{ right:100%; margin-right:14px; flex-direction:row-reverse; }
+.pd-row-text p{ font-size:14.5px; line-height:1.8; color:var(--ink-soft); max-width:42ch; text-align:left; }
+.pd-row-visual img{
+  width:100%; display:block; border-radius:16px; border:1px solid var(--line);
+  box-shadow:0 24px 54px -30px rgba(48,54,68,.28);
+}
+
+/* Front-facing iMac-style monitor mockup — the one "brand moment" shot,
+   matching the reference portfolio's monitor mockups. */
+.monitor-mock{ width:100%; max-width:820px; margin:0 auto; }
+.monitor-mock .screen{
+  background:#151515; border-radius:14px; padding:14px;
+  box-shadow:0 34px 74px -30px rgba(48,54,68,.4);
+}
+.monitor-mock .cam{ width:6px; height:6px; border-radius:50%; background:#333; margin:0 auto 10px; }
+.monitor-mock .display{ border-radius:4px; overflow:hidden; background:#151515; line-height:0; }
+.monitor-mock .display img{ width:100%; display:block; }
+.monitor-mock .neck{ width:70px; height:30px; background:linear-gradient(180deg,#d9d9d9,#b7b7b7); margin:6px auto 0; }
+.monitor-mock .base{
+  width:230px; height:14px; margin:0 auto; border-radius:8px;
+  background:linear-gradient(180deg,#e2e2e2,#c2c2c2);
+  box-shadow:0 10px 16px -6px rgba(0,0,0,.28);
+}
+
+/* Full, UNCROPPED page screenshots in a clean waterfall grid — every screen
+   shown complete (whole page, not a fragment), matching the reference
+   portfolio's page collages. Card widths vary naturally with image height. */
+.pd-full-grid{
+  display:grid; grid-template-columns:1fr 1fr;
+  align-items:start; gap:24px; max-width:1000px; margin:0 auto; padding:0 var(--pad-x) 100px;
+}
+.pd-full-grid .col-stack{ display:flex; flex-direction:column; gap:24px; }
+.pd-full-grid.cols-3{ grid-template-columns:repeat(3, 1fr); max-width:1200px; }
+.pd-full-grid .shot-card{
+  border-radius:12px; overflow:hidden;
+  border:1px solid var(--line); box-shadow:0 20px 46px -28px rgba(48,54,68,.25); background:#fff;
+}
+.pd-full-grid .shot-card .bar{ display:flex; gap:6px; padding:9px 12px; background:#ececec; border-bottom:1px solid var(--line); }
+.pd-full-grid .shot-card .bar span{ width:8px; height:8px; border-radius:50%; background:#d4d4d4; }
+.pd-full-grid .shot-card img{ width:100%; display:block; }
+.shot-caption{ font-size:12.5px; color:var(--ink-soft); margin-top:-16px; text-align:center; }
+
+/* Front-facing laptop mockup — screen bezel + base. Used sparingly (usually just
+   the hero shot) so the page doesn't repeat the same device frame end to end —
+   supporting shots use .browser-mock instead for visual variety. */
+.laptop-mock .screen{
+  background:linear-gradient(180deg,#2a2a2e,#18181a);
+  border-radius:16px 16px 5px 5px; padding:16px 16px 10px;
+  box-shadow:0 34px 74px -32px rgba(48,54,68,.4);
+}
+.laptop-mock .cam{ width:6px; height:6px; border-radius:50%; background:#3d3d40; margin:0 auto 12px; }
+.laptop-mock .display{ border-radius:5px; overflow:hidden; background:#fafafa; }
+.laptop-mock .display img{ width:100%; display:block; object-fit:cover; object-position:top; }
+.laptop-mock .display.ratio-16-10 img{ aspect-ratio:16/10; }
+.laptop-mock .display.ratio-4-3 img{ aspect-ratio:4/3; }
+.laptop-mock .base{
+  height:14px; width:106%; margin:0 -3%;
+  background:linear-gradient(180deg,#e8e8e8,#c7c7c7);
+  border-radius:0 0 8px 8px;
+  box-shadow:0 8px 14px -6px rgba(0,0,0,.28);
+}
+.laptop-mock .notch{ height:5px; width:64px; background:#c7c7c7; border-radius:0 0 5px 5px; margin:0 auto; }
+
+
+/* Video placeholder — used wherever a real video exists but isn't
+   hosted directly; swap the note for a link once one exists. */
+.video-note{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+  border:1px dashed var(--line); border-radius:18px;
+  padding:50px 30px; text-align:center; background:#fafafa;
+  color:var(--ink-soft); font-size:13.5px; max-width:520px; margin:0 auto;
+}
+.video-note .play{
+  width:60px; height:60px; border-radius:50%; background:var(--ink);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  box-shadow:0 10px 22px -8px rgba(48,54,68,.5);
+}
+.video-note .play svg{ width:22px; height:22px; }
+.video-note strong{ color:var(--ink); font-size:14.5px; font-weight:700; }
+
+/* Social post grid — plain tiles, no browser chrome (these are social posts, not webpages) */
+.post-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:20px; max-width:1140px; margin:0 auto; padding:0 var(--pad-x) 90px;
+}
+.post-grid img{
+  width:100%; display:block; border-radius:14px; border:1px solid var(--line);
+  box-shadow:0 20px 46px -28px rgba(48,54,68,.25);
+}
+.post-grid.tight{ grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:12px; }
+.post-grid.tight img{ border-radius:8px; }
+
+/* Instagram post-card mockup — a lightweight stylized post chrome (not a full phone
+   bezel), matching the reference portfolio's banner+post pairing for SafeCare. */
+.ig-post{
+  background:#fff; border-radius:14px; overflow:hidden; border:1px solid var(--line);
+  box-shadow:0 22px 48px -26px rgba(48,54,68,.32); width:100%; max-width:270px; flex-shrink:0;
+}
+.ig-post .head{ display:flex; align-items:center; gap:8px; padding:10px 12px; }
+.ig-post .head .dot{ width:20px; height:20px; border-radius:50%; background:var(--purple); flex-shrink:0; }
+.ig-post .head .lines{ flex:1; display:flex; flex-direction:column; gap:4px; }
+.ig-post .head .lines span{ display:block; height:5px; background:var(--line); border-radius:3px; }
+.ig-post .head .lines span:last-child{ width:55%; }
+.ig-post .body img{ width:100%; display:block; }
+.ig-post .foot{ display:flex; gap:9px; padding:9px 12px; }
+.ig-post .foot svg{ width:15px; height:15px; }
+
+.banner-pair-row{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:70px;
+  padding:50px var(--pad-x) 30px; max-width:1200px; margin:0 auto;
+}
+.banner-pair{ display:flex; align-items:center; }
+.banner-pair .banner{
+  width:170px; border-radius:10px; overflow:hidden; border:1px solid var(--line);
+  box-shadow:0 20px 44px -26px rgba(48,54,68,.3); transform:rotate(-7deg); margin-right:-34px; position:relative; z-index:1;
+}
+.banner-pair .banner img{ width:100%; display:block; }
+.banner-pair .ig-post{ transform:rotate(6deg); position:relative; z-index:2; max-width:230px; }
+
+/* Force all pairs onto a single row (used by SafeCare) — everything shrinks
+   together rather than wrapping onto a second line. */
+.banner-pair-row.one-row{ flex-wrap:nowrap; gap:28px; align-items:flex-start; }
+.banner-pair-row.one-row .banner-pair{ flex:1 1 0; min-width:0; }
+.banner-pair-row.one-row .banner{ width:38%; margin-right:-16%; }
+.banner-pair-row.one-row .ig-post{ max-width:none; width:58%; }
+
+.ig-post .body video{ width:100%; height:100%; display:block; object-fit:cover; }
+
+/* Real phone-bezel mockup with a simplified IG post UI inside — matches the
+   reference examples that use actual phone frames, not just a flat card. */
+.phone-mock{
+  width:230px; flex-shrink:0; background:#111214; border-radius:26px; padding:5px;
+  box-shadow:0 24px 54px -26px rgba(48,54,68,.42); position:relative;
+}
+.phone-mock .notch{
+  width:48px; height:11px; background:#111214; border-radius:7px;
+  position:absolute; top:10px; left:50%; transform:translateX(-50%); z-index:3;
+}
+.phone-mock .screen{ background:#fff; border-radius:21px; overflow:hidden; position:relative; line-height:0; }
+.phone-mock .screen > img{ width:100%; display:block; }
+.phone-mock .ig-head{ display:flex; align-items:center; gap:7px; padding:10px 10px 8px; }
+.phone-mock .ig-head .dot{ width:20px; height:20px; border-radius:50%; background:var(--purple); flex-shrink:0; }
+.phone-mock .ig-head .lines{ flex:1; display:flex; flex-direction:column; gap:4px; }
+.phone-mock .ig-head .lines span{ display:block; height:5px; background:var(--line); border-radius:3px; }
+.phone-mock .ig-head .lines span:last-child{ width:50%; }
+.phone-mock .ig-image{ position:relative; }
+.phone-mock .ig-image img{ width:100%; display:block; }
+.phone-mock .ig-actions{ display:flex; gap:9px; padding:8px 10px; }
+.phone-mock .ig-actions svg{ width:15px; height:15px; }
+.phone-mock .play-overlay{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.28);
+}
+.phone-mock .play-overlay .btn{
+  width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.92);
+  display:flex; align-items:center; justify-content:center;
+}
+.phone-mock .play-overlay .btn svg{ width:16px; height:16px; }
+
+/* Plain prototype-screen gallery — no phone bezel, just clean screenshots */
+.screen-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:18px;
+  max-width:1200px; margin:0 auto; padding:30px var(--pad-x) 60px;
+}
+.screen-grid img{
+  width:100%; display:block; border-radius:10px; border:1px solid var(--line);
+  box-shadow:0 20px 44px -28px rgba(48,54,68,.28); transition:transform .25s ease, box-shadow .25s ease;
+}
+.screen-grid img:hover{ transform:translateY(-4px); box-shadow:0 28px 56px -26px rgba(48,54,68,.36); }
+.screen-grid.no-card img{ border:none; box-shadow:none; border-radius:0; }
+.screen-grid.no-card img:hover{ transform:none; box-shadow:none; }
+
+/* Full page gallery — every page in the book, small but legible tiles */
+.page-grid{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:22px 20px;
+  max-width:1300px; margin:0 auto; padding:20px var(--pad-x) 30px;
+}
+.page-grid img{
+  width:100%; border-radius:4px;
+  filter:drop-shadow(0 14px 20px rgba(48,54,68,.22));
+  transition:transform .25s ease, filter .25s ease;
+}
+.page-grid img:hover{ transform:translateY(-5px) scale(1.04); filter:drop-shadow(0 18px 26px rgba(48,54,68,.3)); }
+.page-grid img:nth-child(6n+1){ transform:rotate(-1.4deg); }
+.page-grid img:nth-child(6n+2){ transform:rotate(1deg); }
+.page-grid img:nth-child(6n+3){ transform:rotate(-0.8deg); }
+.page-grid img:nth-child(6n+4){ transform:rotate(1.3deg); }
+.page-grid img:nth-child(6n+5){ transform:rotate(-1deg); }
+.page-grid img:nth-child(6n+6){ transform:rotate(0.8deg); }
+
+
+/* Flat row of ig-post cards (no phone bezel) — used in place of .phone-row
+   wherever the phone mockup has been removed in favor of the card mockup alone. */
+.ig-post-row{
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:22px;
+  padding:30px var(--pad-x) 60px; max-width:1200px; margin:0 auto;
+}
+.ig-post-row .ig-post:nth-child(odd){ transform:rotate(-3deg); }
+.ig-post-row .ig-post:nth-child(even){ transform:rotate(2.5deg); }
+
+/* force a set of ig-post cards onto one row, sized to fit */
+.ig-post-row.one-row{ flex-wrap:nowrap; }
+.ig-post-row.one-row .ig-post{ max-width:none; flex:1 1 0; min-width:0; }
+
+/* grid of ig-post cards (used for KOL photography, mirrors .post-grid but with IG chrome) */
+.ig-post-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:20px; max-width:1140px; margin:0 auto; padding:0 var(--pad-x) 90px;
+}
+.ig-post-grid .ig-post{ max-width:none; width:100%; }
+.ig-post-grid .ig-post:nth-child(6n+1){ transform:rotate(-2deg); }
+.ig-post-grid .ig-post:nth-child(6n+2){ transform:rotate(1.5deg); }
+.ig-post-grid .ig-post:nth-child(6n+3){ transform:rotate(-1.5deg); }
+.ig-post-grid .ig-post:nth-child(6n+4){ transform:rotate(2deg); }
+.ig-post-grid .ig-post:nth-child(6n+5){ transform:rotate(-2.5deg); }
+.ig-post-grid .ig-post:nth-child(6n+6){ transform:rotate(1.5deg); }
+
+/* Inline video playback: clicking a play button swaps the poster image for a
+   real embedded, autoplaying Vimeo iframe right in place (no navigating away).
+   Source videos are square (2251x2251), so the embed keeps a 1:1 ratio. */
+.video-embed{ position:relative; width:100%; padding-top:100%; background:#000; }
+.video-embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+.video-note.playing{ padding:0; overflow:hidden; border-style:solid; background:#000; }
+.video-note.playing .video-embed{ padding-top:100%; }
+.video-note.playing .play, .video-note.playing strong, .video-note.playing span{ display:none; }
+
+/* Play button overlay + hover lift for ig-post cards that are wrapped in a real
+   <a> link out to a hosted video (Vimeo, etc). */
+.ig-post .body{ position:relative; }
+.ig-post .play-overlay{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:rgba(20,20,20,.32);
+}
+.ig-post .play-overlay .btn{
+  width:60px; height:60px; border-radius:50%; background:var(--ink);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 12px 26px -8px rgba(0,0,0,.55); transition:transform .2s;
+}
+.ig-post .play-overlay .btn svg{ width:22px; height:22px; }
+.ig-post:hover .play-overlay .btn{ transform:scale(1.08); }
+a.ig-post{ display:block; cursor:pointer; transition:transform .2s, box-shadow .2s; }
+a.ig-post:hover{ transform:translateY(-3px) rotate(0deg) !important; box-shadow:0 28px 56px -24px rgba(48,54,68,.4); }
+.ig-post.video-player{ cursor:pointer; transition:transform .2s, box-shadow .2s; }
+.ig-post.video-player:hover{ transform:translateY(-3px) rotate(0deg) !important; box-shadow:0 28px 56px -24px rgba(48,54,68,.4); }
+.ig-post.video-player.is-playing{ cursor:default; }
+.ig-post.video-player.is-playing:hover{ transform:none !important; box-shadow:0 22px 48px -26px rgba(48,54,68,.32); }
+
+/* video-note, upgraded to work as a clickable <a> once a real video link exists */
+a.video-note{ cursor:pointer; transition:transform .2s, box-shadow .2s, border-color .2s; }
+a.video-note:hover{ transform:translateY(-3px); border-color:var(--coral); box-shadow:0 22px 46px -26px rgba(48,54,68,.28); }
+a.video-note .tag{ font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--coral); font-weight:700; }
+.video-note.video-player{ cursor:pointer; transition:transform .2s, box-shadow .2s, border-color .2s; }
+.video-note.video-player:hover{ transform:translateY(-3px); border-color:var(--coral); box-shadow:0 22px 46px -26px rgba(48,54,68,.28); }
+.video-note.video-player .tag{ font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--coral); font-weight:700; }
+.video-note.video-player.playing{ cursor:default; }
+.video-note.video-player.playing:hover{ transform:none; box-shadow:none; }
+
+/* Collage row for the "interactive format" style section — a loose tiled grid of
+   frames next to a single featured video card (mirrors a moodboard-style layout,
+   without a phone bezel). */
+.collage-row{
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:40px;
+  padding:10px var(--pad-x) 90px; max-width:1200px; margin:0 auto;
+}
+.collage-row .collage-grid{
+  display:grid; grid-template-columns:repeat(4, minmax(80px,110px)); gap:10px; flex:1 1 380px; max-width:460px;
+}
+.collage-row .collage-grid img{
+  width:100%; display:block; border-radius:8px; border:1px solid var(--line);
+  box-shadow:0 14px 30px -20px rgba(48,54,68,.3);
+}
+.collage-row .collage-grid img:nth-child(3n+1){ transform:rotate(-3deg); }
+.collage-row .collage-grid img:nth-child(3n+2){ transform:rotate(2deg); }
+.collage-row .featured-video{ flex:0 0 260px; }
+
+/* Tab selector for switching between multiple videos that share one player card */
+.video-tabs{ display:flex; gap:8px; justify-content:center; margin-top:14px; }
+.video-tabs button{
+  font-family:inherit; font-size:12px; font-weight:700; letter-spacing:.02em;
+  padding:7px 16px; border-radius:999px; border:1px solid var(--line); background:#fff;
+  color:var(--ink-soft); cursor:pointer; transition:.2s;
+}
+.video-tabs button.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+.video-tabs button:hover{ border-color:var(--coral); }
+
+/* Tatawa — a grid of ig-post video cards with no source photo, so the body is a
+   colored placeholder (square, matching the 2251x2251 source video ratio) */
+.tatawa-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:22px; max-width:1100px; margin:0 auto; padding:0 var(--pad-x) 130px;
+}
+.tatawa-grid .ig-post{ max-width:none; width:100%; }
+
+.category-hero{
+  min-height:46vh; display:flex; flex-direction:column; justify-content:center;
+  padding-top:150px; padding-bottom:30px;
+  scroll-snap-align:start;
+}
+.category-hero .back-link{
+  display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--ink-soft);
+  margin-bottom:28px; width:fit-content; transition:color .2s;
+}
+.category-hero .back-link:hover{ color:var(--purple); }
+.category-hero h1{ font-size:clamp(34px,5.5vw,60px); font-weight:800; text-align:left; margin-bottom:14px; }
+.category-hero p{ font-size:15.5px; color:var(--ink-soft); max-width:56ch; text-align:left; line-height:1.75; }
+
+/* Fallback: used only for future quick admin-uploaded single items —
+   no scroll-snap-stop here, since content height can vary and a forced
+   stop on tall content is what caused the earlier stuck-scroll bug. */
+.project-full{
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:26px; padding:110px var(--pad-x); position:relative;
+}
+.project-full .media-frame{
+  width:100%; max-width:1040px; max-height:74vh;
+  border-radius:22px; overflow:hidden; border:1px solid var(--line);
+  box-shadow:0 30px 70px -34px rgba(48,54,68,.28);
+  background-color:#fafafa;
+  display:flex; align-items:center; justify-content:center;
+}
+.project-full .media-frame img, .project-full .media-frame video{
+  width:100%; height:100%; max-height:74vh; object-fit:contain; display:block;
+}
+.project-full .caption{ font-size:14px; color:var(--ink-soft); text-align:center; }
+
+.empty-state{
+  min-height:60vh; display:flex; align-items:center; justify-content:center; text-align:center;
+  color:var(--ink-soft); font-size:14.5px; line-height:1.8; max-width:52ch; margin:0 auto; padding:60px var(--pad-x);
+}
+
+.other-categories{ padding-top:70px; padding-bottom:140px; }
+.other-categories .block-label{ font-size:14px; letter-spacing:.2em; color:var(--ink-soft); margin-bottom:20px; }
+.other-cat-list{ display:flex; flex-wrap:wrap; gap:10px; }
+.other-cat-list a{
+  font-size:13px; padding:10px 18px; border:1px solid var(--line); border-radius:999px;
+  color:var(--ink); transition:background .2s, color .2s, border-color .2s;
+}
+.other-cat-list a:hover{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+/* ---------- ADMIN FOOTER NOTE (index only) ---------- */
+.admin-strip{
+  padding:60px var(--pad-x) 160px; display:flex; align-items:center; gap:14px;
+  color:var(--ink-soft); font-size:13px; position:relative;
+}
+.lock{
+  width:30px; height:30px; border-radius:50%; border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; background:#fff;
+}
+.lock svg{ width:14px; height:14px; }
+
+/* ---------- ADMIN PAGE ---------- */
+.admin-shell{ max-width:720px; margin:0 auto; padding-top:150px; padding-bottom:120px; }
+.admin-shell h1{ font-size:32px; font-weight:800; margin-bottom:8px; text-align:left; }
+.admin-shell .sub{ font-size:14px; color:var(--ink-soft); margin-bottom:40px; text-align:left; }
+.admin-card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:28px; margin-bottom:24px; }
+.field{ margin-bottom:16px; }
+.field label{ display:block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); margin-bottom:7px; text-align:left; }
+.field input, .field select, .field textarea{
+  width:100%; padding:11px 13px; border:1px solid var(--line); border-radius:8px;
+  font-family:inherit; font-size:14px; color:var(--ink); background:#fff;
+}
+.field textarea{ resize:vertical; min-height:70px; }
+.btn{
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  font-family:inherit; font-size:13.5px; font-weight:600; letter-spacing:.02em;
+  padding:12px 24px; border-radius:999px; border:1px solid var(--ink); background:var(--ink); color:#fff;
+  transition:opacity .2s;
+}
+.btn:hover{ opacity:.85; }
+.btn.ghost{ background:transparent; color:var(--ink); }
+.btn:disabled{ opacity:.5; cursor:not-allowed; }
+.form-msg{ font-size:13px; margin-top:10px; text-align:left; }
+.form-msg.error{ color:#c0392b; }
+.form-msg.success{ color:#2d7a4a; }
+
+.entry-row{
+  display:flex; align-items:center; gap:14px; padding:14px 0; border-bottom:1px solid var(--line);
+}
+.entry-row:last-child{ border-bottom:none; }
+.entry-row .thumb{
+  width:56px; height:56px; border-radius:8px; overflow:hidden; flex-shrink:0;
+  background:var(--line); display:flex; align-items:center; justify-content:center;
+}
+.entry-row .thumb img, .entry-row .thumb video{ width:100%; height:100%; object-fit:cover; }
+.entry-row .meta{ flex:1; text-align:left; }
+.entry-row .meta .cat{ font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--purple); font-weight:700; }
+.entry-row .meta .title{ font-size:14px; margin-top:2px; }
+.entry-row .actions{ display:flex; gap:8px; }
+.entry-row .actions button{
+  font-family:inherit; font-size:12px; padding:7px 13px; border-radius:999px; cursor:pointer;
+  border:1px solid var(--line); background:#fff; color:var(--ink-soft);
+}
+.entry-row .actions button:hover{ border-color:var(--ink); color:var(--ink); }
+
+@media (max-width:1180px){
+  .nav-top .links, .nav-bottom{ display:none; }
+  .burger{ display:block; }
+  .pd-full-grid.cols-3{ grid-template-columns:repeat(2, 1fr); }
+  .pd-hero-split{ grid-template-columns:1fr; gap:36px; }
+  .pd-hero-split .visual{ order:-1; }
+  .pd-hero-split .monitor-mock{ order:-1; max-width:480px; margin:0 auto; }
+  .pd-row, .pd-row.reverse{ grid-template-columns:1fr; gap:28px; }
+  .pd-row.reverse .pd-row-visual, .pd-row.reverse .pd-row-text{ order:0; }
+  #home.about-section{ min-height:auto; padding-top:130px; }
+  .about-grid{ grid-template-columns:1fr; gap:32px; max-width:520px; }
+  .about-photo{ aspect-ratio:3/4; max-width:360px; margin:0 auto; }
+  .about-photo img{ object-position:center 22%; }
+  .about-skills{ justify-self:start; }
+  .skills-rail{ flex-direction:row; flex-wrap:wrap; }
+  .skills-label{ writing-mode:horizontal-tb; transform:none; }
+}
+
+@media (max-width:520px){
+  .pd-full-grid, .pd-full-grid.cols-3{ grid-template-columns:1fr; }
+}
