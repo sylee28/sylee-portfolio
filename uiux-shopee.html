@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopee UGC Task Module — UI/UX — Lee Shi Ying</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav-top" id="navTop">
+  <div class="links">
+    <span class="spark"><svg viewBox="0 0 24 24" fill="var(--ink)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
+    <a class="nav-link" href="index.html">Home</a><span class="nav-sep">|</span>
+    <a class="nav-link" href="social-media.html">Social Media Content Design</a><span class="nav-sep">|</span>
+    <a class="nav-link" href="website.html">Website Design</a><span class="nav-sep">|</span>
+    <a class="nav-link active" href="uiux.html">UI/UX</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<nav class="nav-bottom" id="navBottom">
+  <a class="nav-link" href="character.html">Character Design</a><span class="nav-sep">|</span>
+  <a class="nav-link" href="comic.html">Comic Creation</a>
+  <span class="spark"><svg viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="menu-spark spark"><svg viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="social-media.html">Social Media Content Design</a>
+    <a href="website.html">Website Design</a>
+    <a class="active" href="uiux.html">UI/UX</a>
+    <a href="character.html">Character Design</a>
+    <a href="comic.html">Comic Creation</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="pd-hero-split spark-field" data-spark-count="3">
+  <div>
+    <a class="back-link" href="uiux.html"><span>←</span> UI/UX</a>
+    <div class="kicker">UI/UX Design — Group Project</div>
+    <h1>Shopee UGC Task Module</h1>
+    <p class="role">Feature concept &amp; prototype, with Wong Siew Kei and Lim Mei Hui</p>
+    <p class="desc">A proposed feature module for Shopee that turns everyday shoppers into active content creators. Young users (18–24) are Shopee's core audience but show little brand loyalty, and platforms still lean on discounts and KOLs rather than the shoppers themselves. This concept — "Bought It? Say It!" — reframes reviews as weekly themed tasks with real rewards, turning a passive purchase into an ongoing, community-driven habit.</p>
+    <div class="pd-palette">
+      <div class="swatch"><div class="chip" style="background:#EE4D2D;"></div><span class="hex">#EE4D2D</span></div>
+      <div class="swatch"><div class="chip" style="background:#FF7A3D;"></div><span class="hex">#FF7A3D</span></div>
+      <div class="swatch"><div class="chip" style="background:#FFC736;"></div><span class="hex">#FFC736</span></div>
+      <div class="swatch"><div class="chip" style="background:#F9F9F9; border:1px solid var(--line);"></div><span class="hex">#F9F9F9</span></div>
+    </div>
+  </div>
+  <div style="display:flex; align-items:center; justify-content:center; gap:0; padding:10px;">
+    <div class="phone-mock" style="width:170px; transform:translateY(10px); margin-right:-26px;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/join-task.png" alt="Join a Task, Earn Rewards — onboarding screen"></div>
+    </div>
+    <div class="phone-mock" style="width:200px; position:relative; z-index:2; box-shadow:0 40px 80px -30px rgba(48,54,68,.45);">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/task-wall.png" alt="Task Wall — weekly tasks list"></div>
+    </div>
+    <div class="phone-mock" style="width:170px; transform:translateY(10px); margin-left:-26px;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/my-rewards.png" alt="My Rewards — points and redeemable vouchers"></div>
+    </div>
+  </div>
+</section>
+
+<!-- About the project -->
+<div class="pd-section-heading">About the Project</div>
+<div class="pd-columns spark-field" data-spark-count="3">
+  <div class="col">
+    <h4>Problem</h4>
+    <p>Young users drive Shopee's traffic but rarely stay loyal. User-generated content is proven to influence purchases more than KOLs, yet current platforms mostly reward watching videos or leaving one-off comments — there's no structured incentive to keep creating.</p>
+  </div>
+  <div class="col">
+    <h4>Research</h4>
+    <p>A literature review of Shopee, TikTok and Lazada (AI recommendations, shoppertainment, influencer marketing, UGC trends), paired with a survey of 25 users aged 18–24 about their shopping habits and what would motivate them to post more.</p>
+  </div>
+  <div class="col">
+    <h4>Solution</h4>
+    <p>A UGC Task Module: weekly themed tasks that reward photo/video reviews with Shopee Coins, coupons and badges — surfaced through a Task Wall, a personal Task Center, and a creator leaderboard for recognition.</p>
+  </div>
+</div>
+
+<!-- Key research stats -->
+<div class="stat-row spark-field" data-spark-count="3">
+  <div class="stat-card">
+    <div class="num">56<span>%</span></div>
+    <p>of surveyed users prioritize discounts &amp; sales when choosing what to buy</p>
+  </div>
+  <div class="stat-card">
+    <div class="num">48<span>%</span></div>
+    <p>trust user reviews over KOL recommendations before purchasing</p>
+  </div>
+  <div class="stat-card">
+    <div class="num">#1</div>
+    <p>Shopee is the most-used platform for ease of use and deals among respondents</p>
+  </div>
+</div>
+
+<!-- Proposed solution — 6 pillars -->
+<div class="pd-section-heading" style="margin-top:10px;">Proposed Solution — "Bought It? Say It!"</div>
+<div class="feature-grid spark-field" data-spark-count="4">
+  <div class="feature-card"><span class="n">01</span><h5>Weekly themed tasks</h5><p>e.g. "Home Goodies" — a fresh content prompt every week to keep participation going.</p></div>
+  <div class="feature-card"><span class="n">02</span><h5>Photo/video + comment</h5><p>Upload unboxing photos or videos with a short creative caption, not just a star rating.</p></div>
+  <div class="feature-card"><span class="n">03</span><h5>Real rewards</h5><p>Shopee Coins, coupons and badges for every completed task, tracked in a personal center.</p></div>
+  <div class="feature-card"><span class="n">04</span><h5>Featured content</h5><p>Strong submissions get surfaced on product pages and the Task Wall itself.</p></div>
+  <div class="feature-card"><span class="n">05</span><h5>Task Wall &amp; Creator List</h5><p>A shared space to browse tasks, see other creators' entries, and follow favorites.</p></div>
+  <div class="feature-card"><span class="n">06</span><h5>Leaderboard recognition</h5><p>Weekly rankings turn consistent creators into recognized top reviewers.</p></div>
+</div>
+
+<!-- User flow — numbered path with a connecting line, callouts on key screens -->
+<div class="pd-section-heading" style="margin-top:10px;">User Flow</div>
+
+<div class="flow-wrap">
+
+<div class="pd-row spark-field" data-spark-count="3">
+  <div class="pd-row-text">
+    <div class="flow-title"><span class="step-num">1</span><h3>Post-checkout invite</h3></div>
+    <p>Right after an order is placed, a pop-up invites the shopper to join a task for that purchase — catching them at the moment they're most engaged with the product.</p>
+  </div>
+  <div class="pd-row-visual annotated" style="display:flex; justify-content:center;">
+    <div class="phone-frame-wrap">
+    <div class="phone-mock" style="width:210px;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/order-placed.png" alt="Order Placed confirmation with a link to join the task"></div>
+    </div>
+    <div class="callout out-right" style="top:42%;"><span class="line"></span>Confirmation doubles as the task invite</div>
+    </div>
+  </div>
+</div>
+
+<div class="pd-row reverse spark-field" data-spark-count="3">
+  <div class="pd-row-text">
+    <div class="flow-title"><span class="step-num">2</span><h3>Pick a task</h3></div>
+    <p>The Task Wall centers every weekly and daily task in one place, each with its own reward, deadline and submission type — text, photo or video.</p>
+  </div>
+  <div class="pd-row-visual annotated" style="display:flex; justify-content:center;">
+    <div class="phone-frame-wrap">
+    <div class="phone-mock" style="width:210px;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/task-wall.png" alt="Task Wall — All Tasks, Weekly, Daily tabs"></div>
+    </div>
+    <div class="callout out-left" style="top:14%;"><span class="line"></span>Weekly / Daily filters</div>
+    </div>
+  </div>
+</div>
+
+<div class="pd-row spark-field" data-spark-count="3">
+  <div class="pd-row-text">
+    <div class="flow-title"><span class="step-num">3</span><h3>Submit &amp; rate</h3></div>
+    <p>Users upload a photo or video of the product, rate their experience, and see exactly how many coins and points the submission is worth before confirming.</p>
+  </div>
+  <div class="pd-row-visual annotated" style="display:flex; justify-content:center;">
+    <div class="phone-frame-wrap">
+    <div class="phone-mock" style="width:210px;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/submit-task.png" alt="Submit Task — rate and upload a photo or video"></div>
+    </div>
+    <div class="callout out-right" style="top:80%;"><span class="line"></span>Tap to rate, reward shown live</div>
+    </div>
+  </div>
+</div>
+
+<div class="pd-row reverse spark-field" data-spark-count="3">
+  <div class="pd-row-text">
+    <div class="flow-title"><span class="step-num">4</span><h3>Track &amp; redeem</h3></div>
+    <p>A personal Task Center holds the point history and progress toward the next reward, while My Rewards lets users redeem points for vouchers and coupons any time.</p>
+  </div>
+  <div class="pd-row-visual annotated" style="display:flex; justify-content:center;">
+    <div class="phone-frame-wrap">
+    <div class="phone-mock" style="width:210px;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/task-center.png" alt="Task Center — points, all tasks and rewards"></div>
+    </div>
+    <div class="callout out-left" style="top:16%;"><span class="line"></span>Live point balance</div>
+    </div>
+  </div>
+</div>
+
+<div class="pd-row spark-field" data-spark-count="3">
+  <div class="pd-row-text">
+    <div class="flow-title"><span class="step-num">5</span><h3>Get recognized</h3></div>
+    <p>A weekly Leaderboard and Top Reviewer picks turn consistent creators into recognized names — and their reviews feed back into product pages other shoppers browse.</p>
+  </div>
+  <div class="pd-row-visual annotated" style="display:flex; justify-content:center;">
+    <div class="phone-frame-wrap">
+    <div class="phone-mock" style="width:210px;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/leaderboard.png" alt="Leaderboard — top creators ranked weekly"></div>
+    </div>
+    <div class="callout out-right" style="top:16%;"><span class="line"></span>Top 3 highlighted weekly</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Full prototype screens -->
+<div class="pd-section-heading" style="margin-top:10px;">Prototype Screens</div>
+<div class="screen-grid spark-field" data-spark-count="5">
+  <img src="assets/uiux/shopee/join-task.png" alt="Join a Task onboarding">
+  <img src="assets/uiux/shopee/task-center.png" alt="Task Center">
+  <img src="assets/uiux/shopee/task-wall.png" alt="Task Wall">
+  <img src="assets/uiux/shopee/task-weekly.png" alt="Weekly Tasks">
+  <img src="assets/uiux/shopee/task-daily.png" alt="Daily Tasks">
+  <img src="assets/uiux/shopee/submit-task.png" alt="Submit Task">
+  <img src="assets/uiux/shopee/submit-success.png" alt="Submit Successful">
+  <img src="assets/uiux/shopee/my-rewards.png" alt="My Rewards">
+  <img src="assets/uiux/shopee/leaderboard.png" alt="Leaderboard">
+  <img src="assets/uiux/shopee/review.png" alt="Top Review / You May Also Like">
+  <img src="assets/uiux/shopee/order-placed.png" alt="Order Placed">
+</div>
+
+<!-- Style -->
+<div class="pd-section-heading" style="margin-top:10px;">Style</div>
+<div class="pd-columns spark-field" data-spark-count="3" style="padding-bottom:40px;">
+  <div class="col">
+    <h4>Visual language</h4>
+    <p>Built on Shopee's own orange-and-white system so the module feels native to the app rather than bolted on — clean cards, rounded task chips, and high-contrast CTAs.</p>
+  </div>
+  <div class="col">
+    <h4>Tone</h4>
+    <p>Playful and rewarding rather than transactional: coins, badges and progress bars keep the focus on participation and community, not just discounts.</p>
+  </div>
+  <div class="col">
+    <h4>Prototype</h4>
+    <p>Built and tested as an interactive Figma prototype covering the full loop from checkout to submission to redemption.</p>
+  </div>
+</div>
+
+<div style="max-width:1200px; margin:0 auto; padding:0 var(--pad-x) 110px;">
+  <a href="https://www.figma.com/design/jCVZyDU3Kmmmapp9I4motG/Untitled?node-id=128-2&t=qyMsEUPT0N51T4Fz-1" target="_blank" rel="noopener" class="back-link" style="display:inline-flex;">View interactive prototype on Figma <span>→</span></a>
+  <p style="font-size:12.5px; color:var(--ink-soft); margin-top:10px;">Group project for a media innovation module, with Wong Siew Kei and Lim Mei Hui.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

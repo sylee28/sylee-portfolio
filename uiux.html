@@ -24,8 +24,7 @@
 
 <nav class="nav-bottom" id="navBottom">
   <a class="nav-link" href="character.html">Character Design</a><span class="nav-sep">|</span>
-  <a class="nav-link" href="comic.html">Comic Creation</a><span class="nav-sep">|</span>
-  <a class="nav-link" href="ip-merch.html">IP Merchandise Design</a>
+  <a class="nav-link" href="comic.html">Comic Creation</a>
   <span class="spark"><svg viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
 </nav>
 
@@ -38,7 +37,6 @@
     <a class="active" href="uiux.html">UI/UX</a>
     <a href="character.html">Character Design</a>
     <a href="comic.html">Comic Creation</a>
-    <a href="ip-merch.html">IP Merchandise Design</a>
   </div>
 </div>
 
@@ -48,9 +46,23 @@
   <p class="reveal">UI/UX design work, from wireframes to interactive prototypes.</p>
 </section>
 
-<div id="gallery">
-  <div class="empty-state">載入中…</div>
-</div>
+<a class="cat-project-slide spark-field" data-spark-count="3" href="uiux-shopee.html">
+  <div class="frame uiux-cover">
+    <div class="phone-mock" style="margin-right:-30px;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/join-task.png" alt="Shopee UGC Task Module — Join a Task"></div>
+    </div>
+    <div class="phone-mock" style="transform:translateY(-18px); position:relative; z-index:2;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/task-wall.png" alt="Shopee UGC Task Module — Task Wall"></div>
+    </div>
+    <div class="phone-mock" style="margin-left:-30px;">
+      <div class="notch"></div>
+      <div class="screen"><img src="assets/uiux/shopee/my-rewards.png" alt="Shopee UGC Task Module — My Rewards"></div>
+    </div>
+  </div>
+  <span class="cta">View project <i>→</i></span>
+</a>
 
 <section class="other-categories">
   <div class="block-label reveal">Other categories</div>
@@ -59,15 +71,10 @@
       <a href="website.html">Website Design</a>
       <a href="character.html">Character Design</a>
       <a href="comic.html">Comic Creation</a>
-      <a href="ip-merch.html">IP Merchandise Design</a>
   </div>
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<script src="js/supabase-client.js"></script>
-<script src="js/projects.js"></script>
 <script src="js/main.js"></script>
-<script>renderCategoryProjects('uiux', 'gallery');</script>
 </body>
 </html>

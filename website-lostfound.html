@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TARUMT Lost and Found — Website Design — Lee Shi Ying</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav-top" id="navTop">
+  <div class="links">
+    <span class="spark"><svg viewBox="0 0 24 24" fill="var(--ink)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
+    <a class="nav-link" href="index.html">Home</a><span class="nav-sep">|</span>
+    <a class="nav-link" href="social-media.html">Social Media Content Design</a><span class="nav-sep">|</span>
+    <a class="nav-link active" href="website.html">Website Design</a><span class="nav-sep">|</span>
+    <a class="nav-link" href="uiux.html">UI/UX</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<nav class="nav-bottom" id="navBottom">
+  <a class="nav-link" href="character.html">Character Design</a><span class="nav-sep">|</span>
+  <a class="nav-link" href="comic.html">Comic Creation</a>
+  <span class="spark"><svg viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="menu-spark spark"><svg viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="social-media.html">Social Media Content Design</a>
+    <a class="active" href="website.html">Website Design</a>
+    <a href="uiux.html">UI/UX</a>
+    <a href="character.html">Character Design</a>
+    <a href="comic.html">Comic Creation</a>
+  </div>
+</div>
+
+<section class="pd-hero-split spark-field" data-spark-count="3">
+  <div>
+    <a class="back-link" href="website.html"><span>←</span> Website Design</a>
+    <div class="kicker">Website Design</div>
+    <h1>TARUMT Lost and Found</h1>
+    <p class="desc">TARUMT Lost&amp;Found is a dedicated website designed to help students report and recover lost items within the TARUMT school campus. Built with Bootstrap 5, HTML, CSS and JavaScript on the frontend, with a PHP and SQL backend managed through XAMPP.</p>
+    <div class="pd-palette">
+      <div class="swatch"><div class="chip" style="background:#F4C760;"></div><span class="hex">#F4C760</span></div>
+      <div class="swatch"><div class="chip" style="background:#3B3B3B;"></div><span class="hex">#3B3B3B</span></div>
+    </div>
+  </div>
+  <div class="monitor-mock">
+    <div class="screen">
+      <div class="cam"></div>
+      <div class="display"><img src="assets/website/lostfound/lostfound-home.jpg" alt="TARUMT Lost and Found — Home"></div>
+    </div>
+    <div class="neck"></div>
+    <div class="base"></div>
+  </div>
+</section>
+
+<!-- About the Website -->
+<div class="pd-section-heading">About the Website</div>
+<div class="pd-columns spark-field" data-spark-count="3">
+  <div class="col">
+    <h4>Goal</h4>
+    <p>An efficient, user-friendly platform for students to track and retrieve their lost belongings, without needing to chase down staff or check noticeboards.</p>
+  </div>
+  <div class="col">
+    <h4>Reporting an item</h4>
+    <p>Users fill out the required details for a lost or found item. Once submitted, the report is sent for admin verification before it goes live.</p>
+  </div>
+  <div class="col">
+    <h4>After approval</h4>
+    <p>Approved item information is posted on the website, making it visible to the whole community to view and respond to.</p>
+  </div>
+</div>
+
+<!-- Admin role -->
+<div class="pd-section-heading">The Admin's Role</div>
+<div class="stat-row spark-field" data-spark-count="3" style="padding-bottom:40px;">
+  <div class="stat-card">
+    <p style="font-size:15px; font-weight:700; color:var(--ink); margin-bottom:8px;">Verify</p>
+    <p>Every submitted report is reviewed by an admin to confirm its accuracy and authenticity before anything is published.</p>
+  </div>
+  <div class="stat-card">
+    <p style="font-size:15px; font-weight:700; color:var(--ink); margin-bottom:8px;">Approve &amp; publish</p>
+    <p>Once confirmed, the admin approves the report and the lost or found item is posted for the whole community to see.</p>
+  </div>
+  <div class="stat-card">
+    <p style="font-size:15px; font-weight:700; color:var(--ink); margin-bottom:8px;">Support</p>
+    <p>Admins also manage inquiries and facilitate communication through social media, keeping the recovery process smooth.</p>
+  </div>
+</div>
+
+<div class="pd-section-heading">All Screens</div>
+<div class="pd-full-grid cols-3 spark-field" data-spark-count="5">
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-register.jpg" alt="Register"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-home.jpg" alt="Home"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-login.jpg" alt="Login"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-post-public.jpg" alt="Post — public view"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-contact-us.jpg" alt="Contact Us"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-dashboard.jpg" alt="Admin — Home / Dashboard"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-delete-confirm.jpg" alt="Admin — Delete confirmation"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-post-details-admin.jpg" alt="Admin — Post Details"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-add-post.jpg" alt="Admin — Add Post"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-edit-post.jpg" alt="Admin — Edit Post"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-notification.jpg" alt="Admin — Notification"></div>
+  <div class="shot-card"><div class="bar"><span></span><span></span><span></span></div><img src="assets/website/lostfound/full/lostfound-edit-profile.jpg" alt="Admin — Edit Profile"></div>
+</div>
+
+<div style="max-width:1200px; margin:0 auto; padding:0 var(--pad-x) 110px; font-size:12.5px; color:var(--ink-soft);">
+  All rights reserved by LeeLim's Friends.
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

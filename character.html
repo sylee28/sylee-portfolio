@@ -24,8 +24,7 @@
 
 <nav class="nav-bottom" id="navBottom">
   <a class="nav-link active" href="character.html">Character Design</a><span class="nav-sep">|</span>
-  <a class="nav-link" href="comic.html">Comic Creation</a><span class="nav-sep">|</span>
-  <a class="nav-link" href="ip-merch.html">IP Merchandise Design</a>
+  <a class="nav-link" href="comic.html">Comic Creation</a>
   <span class="spark"><svg viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></svg></span>
 </nav>
 
@@ -38,7 +37,6 @@
     <a href="uiux.html">UI/UX</a>
     <a class="active" href="character.html">Character Design</a>
     <a href="comic.html">Comic Creation</a>
-    <a href="ip-merch.html">IP Merchandise Design</a>
   </div>
 </div>
 
@@ -48,9 +46,12 @@
   <p class="reveal">Original and fan-inspired character design.</p>
 </section>
 
-<div id="gallery">
-  <div class="empty-state">載入中…</div>
-</div>
+<a class="cat-project-slide spark-field" data-spark-count="3" href="character-kuro.html">
+  <div class="frame" style="background:linear-gradient(135deg,#EDE6D6,#DCD2BC); padding:50px; display:flex; align-items:center; justify-content:center; gap:40px;">
+    <img src="assets/character/kuro/turnaround.png" alt="Kuro — character turnaround" style="width:100%; max-width:900px; display:block;">
+  </div>
+  <span class="cta">View project <i>→</i></span>
+</a>
 
 <section class="other-categories">
   <div class="block-label reveal">Other categories</div>
@@ -59,15 +60,10 @@
       <a href="website.html">Website Design</a>
       <a href="uiux.html">UI/UX</a>
       <a href="comic.html">Comic Creation</a>
-      <a href="ip-merch.html">IP Merchandise Design</a>
   </div>
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<script src="js/supabase-client.js"></script>
-<script src="js/projects.js"></script>
 <script src="js/main.js"></script>
-<script>renderCategoryProjects('character', 'gallery');</script>
 </body>
 </html>
