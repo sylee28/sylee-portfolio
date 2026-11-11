@@ -98,7 +98,7 @@ function buildHero () {
 
   var row = document.createElement('div');
   row.className = 'hero-row';
-  row.innerHTML = '<span>Graphic</span><span>Designer</span>';
+  row.innerHTML = '<span>Multimedia</span><span>Designer</span>';
   hero.appendChild(row);
 
   var h1 = document.createElement('h1');
